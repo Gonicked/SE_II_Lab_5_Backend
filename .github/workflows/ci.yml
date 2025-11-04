@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  # CI
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Use Node 22
+        uses: actions/setup-node@4
+        with:
+          node-version: 22
+      
+      - name: Install Deps
+        run: npm install
+      
+      - name: Run Tests
+        run: npm run test
